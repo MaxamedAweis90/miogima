@@ -1,5 +1,13 @@
-import ConstructionPage from "../components/construction/page";
+import Hero from "@/components/home/hero";
+import PartnersDonors from "@/components/home/partners-donors";
+import Pillars from "@/components/home/pillars";
 
 export default function Home() {
-  return <ConstructionPage />;
+  return (
+    <main>
+      <Hero />
+      <PartnersDonors />
+      <Pillars />
+    </main>
+  );
 }

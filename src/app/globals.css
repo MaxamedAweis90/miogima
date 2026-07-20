@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbfdff;
+  --foreground: #102033;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+
+  --accent: #14b8a6;
+  --accent-hover: #0f9488;
+
+  --muted: #5b7088;
+  --border: #dbe7f3;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  /* Expose custom theme colors to Tailwind utility classes */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(37, 99, 235, 0.08), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.07), transparent 28%),
+    linear-gradient(180deg, rgba(37, 99, 235, 0.03), transparent 20%),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+@keyframes hero-stats-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.hero-stats-marquee {
+  animation: hero-stats-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.app-container {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.app-section {
+  @apply py-16 sm:py-20 lg:py-24;
+}
+
+.app-surface {
+  @apply rounded-3xl border border-border bg-white shadow-[0_20px_60px_rgba(37,99,235,0.08)];
+}
+
+.app-heading {
+  @apply text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl;
+}
+
+.app-lead {
+  @apply text-base text-muted sm:text-lg;
+}
+
+.app-nav-link {
+  @apply text-sm font-medium text-foreground/80 transition-colors duration-200 hover:text-primary;
+}
+
+.app-footer-link {
+  @apply text-sm text-muted transition-colors duration-200 hover:text-primary;
+}
+
+.app-button-primary {
+  @apply inline-flex items-center justify-center rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-accent-hover;
+}
+
+.app-button-secondary {
+  @apply inline-flex items-center justify-center rounded-md border border-border bg-background px-5 py-2.5 text-sm font-semibold text-foreground transition-colors duration-200 hover:border-primary hover:text-primary;
+}
+
+.app-chip {
+  @apply inline-flex items-center rounded-full border border-primary/15 bg-primary/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-primary;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
